@@ -1,8 +1,6 @@
-import GithubIcon from "assets/icons/GithubIcon";
-import GoogleIcon from "assets/icons/GoogleIcon";
 import LogoWhite from "assets/icons/LogoWhite";
-import Button from "components/Button";
 import SignInForm from "components/SignInForm";
+import Footer from "./Footer";
 
 const Login = () => {
   return (
@@ -31,11 +29,7 @@ const Login = () => {
           </div>
         </div>
       </main>
-      <footer className="bg-inherit md:row-start-2 md:row-end-3 md:col-start-1 md:col-end-2 md:gap-0 md:bg-blue-primary">
-        <div>Logo1</div>
-        <div>Logo2</div>
-        <div>Logo3</div>
-      </footer>
+      <Footer/>
     </div>
   );
 };
