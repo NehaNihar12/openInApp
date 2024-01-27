@@ -6,6 +6,13 @@ export default {
   ],
   theme: {
     extend: {
+      gridTemplateRows:{
+        'layout': 'auto 1fr auto',
+        'layout-md': '1fr auto'
+      },
+      gridTemplateColumns:{
+        'layout-md': '4fr 2fr 6fr'
+      },
       colors: {
         'bgcolor': {
           'field-cursor':'#F5F5F5',
@@ -27,9 +34,12 @@ export default {
           'color1':'#ACA9FF',
           'color2':'#ACA9FF00'
         },
+        'white':{
+          'primary': '#FFFFFF',
+          'ghost': '#fafafb'
+        },
         'gray-dark': '#273444',
         'black': '#000000',
-        'white': '#FFFFFF',
         'dodoria-100': '#D33030'
       }
     },

@@ -1,42 +1,37 @@
-import GithubIcon from 'assets/icons/GithubIcon';
-import GoogleIcon from 'assets/icons/GoogleIcon';
-import Button from 'components/Button';
-import SignInForm from 'components/SignInForm';
+import GithubIcon from "assets/icons/GithubIcon";
+import GoogleIcon from "assets/icons/GoogleIcon";
+import LogoWhite from "assets/icons/LogoWhite";
+import Button from "components/Button";
+import SignInForm from "components/SignInForm";
 
 const Login = () => {
   return (
-    <div className="grid grid-cols-1 grid-rows-7 md:grid-cols-2 h-screen">
-      <header className=''>
-        <div>Icon</div>
-        <div>Base</div>
+    <div className="h-full md:h-screen w-screen overflow-hidden bg-bgcolor-main grid grid-rows-layout gap-4 md:gap-0 md:grid-cols-layout-md md:grid-rows-layout-md transition-all duration-100 ease-in-out">
+      <header className="bg-blue-primary md:row-start-1 md:row-end-2 md:col-start-1 md:col-end-2 ">
+        <div className="flex items-center p-3 ps-2.5 gap-3 md:flex-col md:items-start md:h-full">
+          <a href="#" className="block md:hidden">
+            <LogoWhite fill="#FAFAFB" />{" "}
+          </a>
+          <a href="#" className="hidden md:block pl-7">
+            <LogoWhite fill="#FAFAFB" width="50" height="80" />{" "}
+          </a>
+          <div className="text-white-ghost block md:hidden ">
+            <a href="#">Base</a>
+          </div>
+          <div className="text-white-ghost hidden md:block text-5xl font-bold flex-auto self-center pt-64">
+            <a href="#">BASE</a>
+          </div>
+        </div>
       </header>
-      <main className='row-span-5'>
-        <div className='grid grid-cols-1 grid-rows-6 h-full'>
-        <div className='row-span-1'>
-          <div>Sign In</div>
-          <div>Sign in to your account</div>
-        </div>
-        <div className='row-span-1'>
-          <div>
-            <span>Icon</span>
-            <span>Sign in with Google</span>
+      <div className="hidden md:block h-[200%] translate-x-[-5.15rem] translate-y-[-7.25rem] rotate-[7deg]  bg-blue-primary md:row-start-1 md:row-end-3 "></div>
+      <main className="md:row-span-full md:col-start-3 md:col-end-4 top-7">
+        <div className="flex-col justify-center">
+          <div className="bg-bgcolor-main">
+            <SignInForm></SignInForm>
           </div>
-          <div>
-            <span>Icon</span>
-            <span>Sign in with Apple</span>
-          </div>
-        </div>
-        <div className='row-span-3'>
-          <SignInForm></SignInForm>
-        </div>
-
-        <div className='row-span-1'>
-          <p>Don't have an account?</p>
-          <a href="#">Register here</a>
-        </div>
         </div>
       </main>
-      <footer className='row-span-1'>
+      <footer className="bg-inherit md:row-start-2 md:row-end-3 md:col-start-1 md:col-end-2 md:gap-0 md:bg-blue-primary">
         <div>Logo1</div>
         <div>Logo2</div>
         <div>Logo3</div>
