@@ -6,7 +6,7 @@ export default function Category() {
       viewBox="0 0 24 24"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
-      class="transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-blue-primary"
+      className={`transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-blue-primary`}
     >
       <g id="Iconly/Bold/Category" >
         <g id="Category">

@@ -22,7 +22,7 @@ export default function SignInForm() {
     // Your sign-in logic goes here
     if (email && password) {
       console.log("Signing in with:", email, password);
-      navigate("/home");
+      navigate("/home",{state:'upload'});
     }
   };
 

@@ -12,7 +12,8 @@ const Routers = () => {
           <Route path="reset-password" element={<PasswordReset />} />
           <Route path="home" element={<Home />} >
             <Route path="upload" element={<Upload />} />
-            <Route index element={<About />} />
+            <Route path="about" element={<About />} />
+            <Route index element={<Upload />} />
           </Route> 
           <Route path="*" element={<h1>Page Not Found</h1>} />
         </Routes>

@@ -11,9 +11,9 @@ import Document from "assets/icons/Document";
 export default function MenuList() {
   return (
     <ul class="space-y-2 font-medium">
-      <Menu label="Dashboard" icon={<Category />} />
-      <Menu label="Upload" icon={<ChartIcon/>}/>
-      <Menu label="Invoice" icon={<Ticket/>} />
+      <Menu to='about' label="Dashboard" icon={<Category />} />
+      <Menu to='upload' label="Upload" icon={<ChartIcon/>}/>
+      <Menu to='#' label="Invoice" icon={<Ticket/>} />
       <Menu label="Schedule" icon={<Document/>}/>
       <Menu label="Calendar" icon={<Calendar/>}/>
       <Menu label="Notification" icon={<Notification/>}/>
