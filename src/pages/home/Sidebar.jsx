@@ -1,81 +1,63 @@
-import CrossIcon from "assets/icons/CrossIcon";
 import LogoWhite from "assets/icons/LogoWhite";
+import React, { useState } from "react";
+import MenuList from "./MenuList";
+import XIcon from "assets/icons/XIcon";
 
+function Sidebar({ children }) {
 
-function Sidebar() {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
+ 
   return (
-    <div
-      className="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-1000
-    p-2 w-[300px] overflow-y-auto text-center bg-gray-900 shadow h-screen"
-    >
-      <div className="text-gray-100 text-xl">
-        <div className="p-2.5 mt-1 flex items-center rounded-md ">
-          <LogoWhite fill="#605BFF"/>
-          <h1 className="text-[15px]  ml-3 text-xl text-gray-200 font-bold">
-            Tailwindbar
-          </h1>
-          <CrossIcon/>
+    <div>
+      <button
+        onClick={toggleSidebar}
+        data-drawer-target="default-sidebar"
+        data-drawer-toggle="default-sidebar"
+        aria-controls="default-sidebar"
+        type="button"
+        class="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+      >
+        <span class="sr-only">Open sidebar</span>
+        <svg
+          class="w-6 h-6"
+          aria-hidden="true"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
+          ></path>
+        </svg>
+      </button>
+
+      <aside
+        id="default-sidebar"
+        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${
+          isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        } sm:translate-x-0`}
+        aria-label="Sidebar"
+      >
+        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 ">
+          <div className="flex items-center justify-between">
+          <div class="p-2.5 mt-1 flex items-center rounded-md ">
+            <LogoWhite fill="#605BFF"/>
+            <h1 class="text-[15px]  ml-3 text-xl text-gray-800 font-bold">
+              Base
+            </h1>
+          </div>
+          <span className="md:hidden" onClick={toggleSidebar}><XIcon/></span>
+          </div>
+          <MenuList/>
         </div>
-        <hr className="my-2 text-gray-600"></hr>
-
-        <div>
-          <div
-            className="p-2.5 mt-3 flex items-center rounded-md 
-        px-4 duration-300 cursor-pointer  bg-gray-700"
-          >
-            <i className="bi bi-search text-sm"></i>
-            <input
-              className="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
-              placeholder="Serach"
-            />
-          </div>
-
-          <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-            <i className="bi bi-house-door-fill"></i>
-            <span className="text-[15px] ml-4 text-gray-200">Home</span>
-          </div>
-          <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-            <i className="bi bi-bookmark-fill"></i>
-            <span className="text-[15px] ml-4 text-gray-200">Bookmark</span>
-          </div>
-          <hr className="my-4 text-gray-600"></hr>
-          <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-            <i className="bi bi-envelope-fill"></i>
-            <span className="text-[15px] ml-4 text-gray-200">Messages</span>
-          </div>
-
-          <div className="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-            <i className="bi bi-chat-left-text-fill"></i>
-            <div
-              className="flex justify-between w-full items-center"
-              onclick="dropDown()"
-            >
-              <span className="text-[15px] ml-4 text-gray-200">Chatbox</span>
-              <span className="text-sm rotate-180" id="arrow">
-                <i className="bi bi-chevron-down"></i>
-              </span>
-            </div>
-          </div>
-          <div
-            className=" leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto"
-            id="submenu"
-          >
-            <h1 className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">
-              Social
-            </h1>
-            <h1 className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">
-              Personal
-            </h1>
-            <h1 className="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">
-              Friends
-            </h1>
-          </div>
-          <div className="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-            <i className="bi bi-box-arrow-in-right"></i>
-            <span className="text-[15px] ml-4 text-gray-200">Logout</span>
-          </div>
-        </div>
-      </div>
+      </aside>
+      {children}
     </div>
   );
 }

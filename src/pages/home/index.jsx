@@ -3,6 +3,7 @@ import LogoWhite from "assets/icons/LogoWhite";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
+import Main from "./Main";
 
 //   return (
 //     <div className>
@@ -167,13 +168,12 @@ import Sidebar from "./Sidebar";
 // };
 
 const Home = () => {
-
   return (
-    <div className="grid"> 
-      <header></header>
-      <aside><Sidebar/></aside>
-      <main></main>
-      <footer></footer>
+    
+    <div className=" bg-bgcolor-main">
+      
+        <Sidebar ><Main/></Sidebar>
+      
     </div>
   );
 };
