@@ -40,7 +40,7 @@ export default function Table({ data = [], setData }) {
                   {cellIndex === 3 ? (
                     // Render dropdown for the 3rd column (index 2)
                     <select
-                      value={selectedTag}
+                      value="select tags"
                       onChange={(e) => {
                         setSelectedTag(e.target.value);
                         handleTagChange(rowIndex, e.target.value);
