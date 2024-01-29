@@ -68,14 +68,22 @@ const Upload = () => {
           accept=".csv"
           class="hidden"
         />
-        <button
+        <Button
+          onClick={handleButtonClick}
+          isLoading={isLoading}
+          disabled={isLoading ? true : false}
+          icon={!isLoading?<UploadIcon />:null}
+        >
+          {" "}
+          {!isLoading ? "Upload File" : ""}
+        </Button>
+        {/* <button
         onClick={handleButtonClick}
         className={`mt-4 px-4 py-2 bg-blue-primary text-white rounded-md hover:bg-blue-dark focus:outline-none focus:shadow-outline-blue active:bg-blue-darker ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
       >
         {isLoading ? 'Uploading...' : 'Upload File'}
-      </button>
+      </button> */}
       </label>
-      
 
       {/* Display the table if there is data */}
       {tableData ? <Table data={tableData} setData={setTableData} /> : null}
