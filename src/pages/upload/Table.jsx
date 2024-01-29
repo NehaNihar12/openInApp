@@ -59,10 +59,10 @@ export default function Table({ data = [], setData }) {
                         {tag.trim()}
                       </span>
                     ))
-                  ) : (
+                  ) : cellIndex === 1?(
                     // Render other columns
-                    value
-                  )}
+                    <a href={`https://www.${value}`} className="text-blue-primary" target="_blank">{value}</a>
+                  ):(value)}
                 </td>
               ))}
             </tr>
