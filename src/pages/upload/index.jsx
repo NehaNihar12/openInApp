@@ -13,8 +13,16 @@ const Upload = () => {
     const file = event.target.files[0];
     const reader = new FileReader();
 
-    reader.onload = (e) => {
-      const data = new Uint8Array(e.target.result);
+    reader.onloadstart = () => {
+      // Set loader to true when file loading starts
+      setLoader(true);
+    };
+
+    setTimeout(() => {
+      // Set loader to false when file loading ends
+      setLoader(false);
+
+      const data = new Uint8Array(reader.result);
       const workbook = XLSX.read(data, { type: "array" });
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
@@ -30,10 +38,15 @@ const Upload = () => {
       });
 
       setTableData(excelData);
-    };
+    },2000);
 
     // Read the Excel file as an array buffer
     reader.readAsArrayBuffer(file);
+  };
+
+  const handleButtonClick = () => {
+    // Trigger the file input click when the button is clicked
+    document.getElementById("dropzone-file").click();
   };
   return (
     <div class="h-full min-h-screen flex-col items-center justify-center w-full md:px-12">
@@ -55,7 +68,14 @@ const Upload = () => {
           accept=".csv"
           class="hidden"
         />
+        <button
+        onClick={handleButtonClick}
+        className={`mt-4 px-4 py-2 bg-blue-primary text-white rounded-md hover:bg-blue-dark focus:outline-none focus:shadow-outline-blue active:bg-blue-darker ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+      >
+        {isLoading ? 'Uploading...' : 'Upload File'}
+      </button>
       </label>
+      
 
       {/* Display the table if there is data */}
       {tableData ? <Table data={tableData} setData={setTableData} /> : null}
