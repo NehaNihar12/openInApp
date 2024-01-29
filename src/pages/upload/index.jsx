@@ -10,23 +10,30 @@ const Upload = () => {
   const [isLoading, setLoader] = useState(false);
 
   const handleFileChange = (event) => {
-    setLoader(true);
     const file = event.target.files[0];
+    const reader = new FileReader();
 
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        setLoader(false);
-        const data = e.target.result;
-        const workbook = XLSX.read(data, { type: "binary" });
-        const sheetName = workbook.SheetNames[0];
-        const sheet = workbook.Sheets[sheetName];
-        const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-        setTableData(jsonData);
-      };
+    reader.onload = (e) => {
+      const data = new Uint8Array(e.target.result);
+      const workbook = XLSX.read(data, { type: "array" });
+      const sheetName = workbook.SheetNames[0];
+      const sheet = workbook.Sheets[sheetName];
+      const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
 
-      reader.readAsBinaryString(file);
-    }
+      // Assuming the data starts from the second row (index 1) and contains headers
+      const headers = jsonData[0];
+      const excelData = jsonData.slice(1).map((row) => {
+        return headers.reduce((obj, header, index) => {
+          obj[header] = row[index];
+          return obj;
+        }, {});
+      });
+
+      setTableData(excelData);
+    };
+
+    // Read the Excel file as an array buffer
+    reader.readAsArrayBuffer(file);
   };
   return (
     <div class="h-full min-h-screen flex-col items-center justify-center w-full md:px-12">
@@ -48,30 +55,10 @@ const Upload = () => {
           accept=".csv"
           class="hidden"
         />
-
-        {/* <Button
-          onClick={handleFileChange}
-          isLoading={isLoading}
-          icon={<UploadIcon />}
-        >
-          <label
-            for="button-file"
-            class="flex flex-col items-center justify-center w-full"
-          >
-            <input
-              id="button-file"
-              type="file"
-              onChange={handleFileChange}
-              accept=".csv"
-              class="hidden"
-            />
-            Upload file
-          </label>
-        </Button> */}
       </label>
 
       {/* Display the table if there is data */}
-      {tableData ? <Table tableData={tableData} setTableData={setTableData}/> : null}
+      {tableData ? <Table data={tableData} setData={setTableData} /> : null}
     </div>
   );
 };
